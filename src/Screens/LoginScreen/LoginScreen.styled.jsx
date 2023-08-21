@@ -14,7 +14,6 @@ export const RegistrationView = styled.View`
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
-  //padding-bottom: 144px;
 `;
 export const StyledViewInput = styled.View`
   width: 100%;

@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import { useInputReducer } from "../../hooks/hookUseReduscer";
+import { useInputReducer } from "../../hooks/hookUseReducer";
 import {TextInput,
   View,
   Image

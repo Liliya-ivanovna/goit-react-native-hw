@@ -8,7 +8,7 @@ import { useFonts } from 'expo-font';
 import PostsScreen from "./src/Screens/PostScreen/PostsScreen";
 export default function App() {
   const [fontsLoaded] = useFonts({
-    'Roboto-Regular': require('../goit-react-native-hw/assets/Fonts/Roboto-Regular.ttf'),
+    'Roboto-Regular': require('./assets/Fonts/Roboto-Regular.ttf'),
   });
 
   if (!fontsLoaded) {

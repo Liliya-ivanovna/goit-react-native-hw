@@ -3,9 +3,11 @@ import { StyleSheet, View } from "react-native";
 import { useFonts } from 'expo-font';
 
 
-//import RegistrationScreen from "./src/Screens/RegistrationScreen/RegistrationScreen";
-//import LoginScreen from "./src/Screens/LoginScreen/LoginScreen";
+import RegistrationScreen from "./src/Screens/RegistrationScreen/RegistrationScreen";
+import LoginScreen from "./src/Screens/LoginScreen/LoginScreen";
 import PostsScreen from "./src/Screens/PostScreen/PostsScreen";
+
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     'Roboto-Regular': require('./assets/Fonts/Roboto-Regular.ttf'),
@@ -19,7 +21,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
    
-      <PostsScreen/>
+      <LoginScreen/>
     </View>
   );
 }

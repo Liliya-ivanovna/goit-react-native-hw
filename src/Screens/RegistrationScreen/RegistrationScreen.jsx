@@ -1,11 +1,15 @@
 import React, { useState, useReducer } from "react";
 import { useInputReducer } from "../../hooks/hookUseReducer";
-import {TextInput,
+
+import {
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
   View,
   Image
 } from "react-native";
 import { loginValidator,emailValidator,passwordValidator } from "../../validators";
-import {SignInWrapper,SignInButtonText, PasswordView,PasswordButton,PasswordButtonText,Title,BackgrImage,RegistrationButtonText,RegistrationButton, RegistrationView,AvatarView,AddAvatarButton,StyledViewInput,ViewInputs} from "./RegistrationScreen.styled";
+import {SignInWrapper,ErrorText,SignInButtonText,InputStyle, PasswordView,PasswordButton,PasswordButtonText,Title,BackgrImage,RegistrationButtonText,RegistrationButton, RegistrationView,AvatarView,AddAvatarButton,StyledViewInput,ViewInputs} from "./RegistrationScreen.styled";
 import bgImage from "../../../assets/bg_photo.png";
 import addImage from "../../../assets/add.png";
 import avatarImage from "../../../assets/avatar.png";
@@ -44,15 +48,18 @@ const RegistrationScreen = () => {
     } else {
       setErrorPassword(false);
     }
+   
+
     dispatch({ type: "login", payload: "" });
     dispatch({ type: "email", payload: "" });
     dispatch({ type: "password", payload: "" });
-  };
-  console.log(inputsValue);
+};
+console.log(inputsValue);
 
   return (
   
       <BackgrImage  source={bgImage}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <RegistrationView>
         <AvatarView>
       <Image source={avatarImage}/>
@@ -61,9 +68,11 @@ const RegistrationScreen = () => {
       </AddAvatarButton>
       </AvatarView>
       <Title>Реєстрація</Title>
+      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={32}>
       <ViewInputs>
         <StyledViewInput>
-        <TextInput
+        <InputStyle
           onChangeText={(text) => {
             dispatch({ type: "login", payload: text });
           }}
@@ -73,9 +82,10 @@ const RegistrationScreen = () => {
           textContentType="username"
           keyboardType="default"
         />
+        {errorLogin && <ErrorText>Невірний формат логіну</ErrorText>}
        </StyledViewInput>
        <StyledViewInput>
-        <TextInput
+        <InputStyle
           onChangeText={(text) => {
             dispatch({ type: "email", payload: text });
           }}
@@ -85,10 +95,13 @@ const RegistrationScreen = () => {
           keyboardType="email-address"
           textContentType="emailAddress"
         />
+        {errorEmail && (
+                  <ErrorText>Невірний формат електронної пошти</ErrorText>
+                )}
         </StyledViewInput>
         <StyledViewInput>
         <PasswordView>
-        <TextInput
+        <InputStyle
           name="password"
           placeholder="Пароль"
           value={password}
@@ -104,19 +117,24 @@ const RegistrationScreen = () => {
                     <PasswordButtonText>Показати</PasswordButtonText>
                   </PasswordButton>
                  </PasswordView>
+                 {errorPassword && (
+                  <ErrorText>
+                  Невірний формат паролю
+                  </ErrorText>
+                )}
                  </StyledViewInput>
    </ViewInputs>
+   </KeyboardAvoidingView>
    <RegistrationButton onPress={onPressButton}>
             <RegistrationButtonText>Зареєструватися</RegistrationButtonText>
           </RegistrationButton>
           <View>
           <SignInWrapper>
-           
           <SignInButtonText>Вже є акаунт? Увійти</SignInButtonText>
-          
-          </SignInWrapper>
+        </SignInWrapper>
       </View>
      </RegistrationView>
+   </TouchableWithoutFeedback>
  </BackgrImage>
   );
 };

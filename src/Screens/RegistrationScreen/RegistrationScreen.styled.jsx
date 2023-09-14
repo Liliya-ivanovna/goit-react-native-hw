@@ -14,6 +14,7 @@ export const RegistrationView = styled.View`
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
+  justify-content: start;
 `;
 export const AvatarView = styled.View`
   width: 120px;
@@ -37,7 +38,6 @@ export const StyledViewInput = styled.View`
   color:#BDBDBD;
 `;
 export const ViewInputs = styled.View`
-  width: 100%;
   gap: 16px;
   align-items: center;
   margin-top: 33px;
@@ -66,8 +66,7 @@ export const RegistrationButtonText = styled.Text`
 export const TextLink = styled.Text`
   font-size: 16px;
   font-family: Roboto-Regular;
-  color: 
-#1B4371;
+  color: #1B4371;
 line-height:18.75px;
 `;
 export const PasswordButton = styled.TouchableOpacity`
@@ -97,4 +96,14 @@ export const SignInButtonText = styled.Text`
 export const SignInWrapper = styled.View`
   flex-direction: row;
   align-items: center;
+`;
+ export const InputStyle=styled.TextInput`
+ width:100%;
+ `;
+
+export const ErrorText = styled.Text`
+font-family: Roboto-Regular;
+font-size: 10px;
+color: #ff0000;
+
 `;

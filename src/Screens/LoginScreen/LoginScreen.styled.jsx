@@ -14,6 +14,7 @@ export const RegistrationView = styled.View`
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
+  justify-content: start;
 `;
 export const StyledViewInput = styled.View`
   width: 100%;
@@ -27,7 +28,6 @@ export const StyledViewInput = styled.View`
   color:#BDBDBD;
 `;
 export const ViewInputs = styled.View`
-  width: 100%;
   gap: 16px;
   align-items: center;
   margin-top: 33px;
@@ -88,4 +88,14 @@ export const SignInButtonText = styled.Text`
 export const SignInWrapper = styled.View`
   flex-direction: row;
   align-items: center;
+`;
+export const TextInputStyle=styled.TextInput`
+ width:100%;
+ `;
+
+export const ErrorText = styled.Text`
+font-family: Roboto-Regular;
+font-size: 10px;
+color: #ff0000;
+
 `;

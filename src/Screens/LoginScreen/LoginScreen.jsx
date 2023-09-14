@@ -1,8 +1,11 @@
 import React, { useState, useReducer } from "react";
 import { useInputReducer } from "../../hooks/hookUseReducer";
-import { TextInput, View} from "react-native";
+import { KeyboardAvoidingView,TouchableWithoutFeedback,
+  Keyboard,View} from "react-native";
 import { emailValidator, passwordValidator } from "../../validators";
 import {
+  ErrorText,
+  TextInputStyle,
   SignInWrapper,
   SignInButtonText,
   PasswordView,
@@ -14,7 +17,7 @@ import {
   RegistrationButton,
   RegistrationView,
   StyledViewInput,
-  ViewInputs,
+  ViewInputs
 } from "./LoginScreen.styled";
 import bgImage from "../../../assets/bg_photo.png";
 
@@ -50,11 +53,14 @@ const LoginScreen = () => {
 
   return (
     <BackgrImage source={bgImage}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <RegistrationView>
         <Title>Увійти</Title>
+        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={32}>
         <ViewInputs>
           <StyledViewInput>
-            <TextInput
+            <TextInputStyle
               onChangeText={(text) => {
                 dispatch({ type: "email", payload: text });
               }}
@@ -64,10 +70,13 @@ const LoginScreen = () => {
               keyboardType="email-address"
               textContentType="emailAddress"
             />
+            {errorEmail && (
+                  <ErrorText>Невірний формат електронної пошти</ErrorText>
+                )}
           </StyledViewInput>
           <StyledViewInput>
             <PasswordView>
-              <TextInput
+              <TextInputStyle
                 name="password"
                 placeholder="Пароль"
                 value={password}
@@ -77,6 +86,9 @@ const LoginScreen = () => {
                   dispatch({ type: "password", payload: text });
                 }}
               />
+              {errorPassword && (
+                  <ErrorText>Невірний формат паролю</ErrorText>
+                )}
               <PasswordButton
                 onPress={() => setPasswordVisible(!passwordVisible)}>
                 <PasswordButtonText>Показати</PasswordButtonText>
@@ -84,8 +96,10 @@ const LoginScreen = () => {
             </PasswordView>
           </StyledViewInput>
         </ViewInputs>
+        </KeyboardAvoidingView>
         <RegistrationButton onPress={onPressButton}>
           <RegistrationButtonText>Увійти</RegistrationButtonText>
+          
         </RegistrationButton>
         <View>
           <SignInWrapper>
@@ -93,6 +107,7 @@ const LoginScreen = () => {
           </SignInWrapper>
         </View>
       </RegistrationView>
+      </TouchableWithoutFeedback>
     </BackgrImage>
   );
 };

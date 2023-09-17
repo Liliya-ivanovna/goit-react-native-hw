@@ -1,4 +1,4 @@
-import styled, { css } from '@emotion/native';
+import styled from '@emotion/native';
 
 export const BackgroundView = styled.ImageBackground`
   width: 100%;
@@ -7,8 +7,11 @@ export const BackgroundView = styled.ImageBackground`
   padding-left: 16px;
   padding-right: 16px;
   background-color: #fff;
+  
 `;
-
+export const Icon=styled.View`
+ margin-right:10px; 
+`
 export const ProfileWrapper = styled.View`
   flex-direction: row;
   align-items: center;`;

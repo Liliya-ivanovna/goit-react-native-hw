@@ -12,14 +12,19 @@ import {
   const PostsScreen = () => {
     return (
       <BackgroundView>
-        <Feather name="log-out" size={24} color="#BDBDBD" />
+     
         <ProfileWrapper>
         <ProfileImage source={profileImage}/>
           <ProfileDetailsWrapper>
             <ProfileName>Natali Romanova</ProfileName>
             <ProfileEmail>email@example.com</ProfileEmail>
           </ProfileDetailsWrapper>
-        </ProfileWrapper>
+       
+          <Feather name="log-out" size={24} color="#BDBDBD" />
+      
+    
+          </ProfileWrapper>
+      
       </BackgroundView>
     );
   };

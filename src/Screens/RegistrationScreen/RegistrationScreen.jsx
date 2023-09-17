@@ -1,6 +1,5 @@
 import React, { useState, useReducer } from "react";
 import { useInputReducer } from "../../hooks/hookUseReducer";
-
 import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
@@ -14,7 +13,8 @@ import bgImage from "../../../assets/bg_photo.png";
 import addImage from "../../../assets/add.png";
 import avatarImage from "../../../assets/avatar.png";
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
+
   const [errorLogin, setErrorLogin] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
@@ -53,6 +53,10 @@ const RegistrationScreen = () => {
     dispatch({ type: "login", payload: "" });
     dispatch({ type: "email", payload: "" });
     dispatch({ type: "password", payload: "" });
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    });
 };
 console.log(inputsValue);
 
@@ -130,7 +134,11 @@ console.log(inputsValue);
           </RegistrationButton>
           <View>
           <SignInWrapper>
-          <SignInButtonText>Вже є акаунт? Увійти</SignInButtonText>
+          <SignInButtonText>Вже є акаунт?</SignInButtonText>
+     
+          <SignInButtonText onPress={() => navigation.navigate("Login")}
+      >Увійти</SignInButtonText>
+     
         </SignInWrapper>
       </View>
      </RegistrationView>

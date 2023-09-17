@@ -21,7 +21,8 @@ import {
 } from "./LoginScreen.styled";
 import bgImage from "../../../assets/bg_photo.png";
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
+
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(true);
@@ -48,6 +49,11 @@ const LoginScreen = () => {
     }
     dispatch({ type: "email", payload: "" });
     dispatch({ type: "password", payload: "" });
+
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    })
   };
   console.log(inputsValue);
 
@@ -103,7 +109,9 @@ const LoginScreen = () => {
         </RegistrationButton>
         <View>
           <SignInWrapper>
-            <SignInButtonText>Немає акаунту? Зареєструватися</SignInButtonText>
+            <SignInButtonText>Немає акаунту? </SignInButtonText>
+            <SignInButtonText onPress={() => navigation.navigate("Registration")}
+      >Зареєструватися</SignInButtonText>
           </SignInWrapper>
         </View>
       </RegistrationView>

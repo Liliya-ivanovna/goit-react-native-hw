@@ -1,12 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { useFonts } from 'expo-font';
-
+import { NavigationContainer } from "@react-navigation/native";
+import 'react-native-gesture-handler';
+import { createStackNavigator } from "@react-navigation/stack";
 
 import RegistrationScreen from "./src/Screens/RegistrationScreen/RegistrationScreen";
 import LoginScreen from "./src/Screens/LoginScreen/LoginScreen";
-import PostsScreen from "./src/Screens/PostScreen/PostsScreen";
+import MapScreen from "./src/Screens/MapScreen/MapScreen";
+import Home from "./src/Screens/Home/Home";
+import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
 
+const MainStack = createStackNavigator(); 
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,11 +23,33 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-   
-      <LoginScreen/>
-    </View>
+    <NavigationContainer>
+      <MainStack.Navigator 
+      initialRouteName="Login"
+      screenOptions={{ headerShown: false }}>
+      <MainStack.Screen name="Registration" component={RegistrationScreen} />{/* Аналог Route */}
+        <MainStack.Screen name="Login" component={LoginScreen} />
+        <MainStack.Screen name="Home" component={Home} />
+        <MainStack.Screen
+          name="Comments"
+          component={CommentsScreen}
+          options={{
+            headerShown: true,
+            headerTitle: "Коментарі",
+            headerTitleAlign: "center",
+          }}
+        />
+        <MainStack.Screen
+          name="Map"
+          component={MapScreen}
+          options={{
+            headerShown: true,
+            headerTitle: "Мапа",
+            headerTitleAlign: "center",
+          }}
+        />
+    </MainStack.Navigator>
+    </NavigationContainer>
   );
 }
 

@@ -20,7 +20,6 @@ export const ProfileImage = styled.Image`
   width: 60px;
   height: 60px;
   border-radius: 16px;
-  //resize-mode: cover;
 `;
 
 export const ProfileDetailsWrapper = styled.View`

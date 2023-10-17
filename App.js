@@ -6,11 +6,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import 'react-native-gesture-handler';
 import { createStackNavigator } from "@react-navigation/stack";
 
-import RegistrationScreen from "./src/Screens/RegistrationScreen/RegistrationScreen";
-import LoginScreen from "./src/Screens/LoginScreen/LoginScreen";
-import MapScreen from "./src/Screens/MapScreen/MapScreen";
-import Home from "./src/Screens/Home/Home";
-import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
+import RegistrationScreen from "./src/screens/RegistrationScreen/RegistrationScreen"
+import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
+import MapScreen from "./src/screens/MapScreen/MapScreen";
+import Home from "./src/screens/Home/Home";
+import CommentsScreen from "./src/screens/CommentsScreen/CommentsScreen";
 
 const MainStack = createStackNavigator(); 
 
@@ -54,11 +54,11 @@ export default function App() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

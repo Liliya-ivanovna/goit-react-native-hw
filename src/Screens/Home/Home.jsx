@@ -1,40 +1,76 @@
-import PostsScreen from '../PostScreen/PostsScreen'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+import { Feather } from "@expo/vector-icons";
+
+import PostsScreen from "../PostScreen/PostsScreen";
+import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
+import LogOutButton from "../../components/LogOutButton/LogOutButton";
+import ProfileScreen from "../ProfileScreen/ProfileScreen";
+import TabBar from "../../components/TabBar/TabBar";
 
 const Tabs = createBottomTabNavigator();
-const navigation = useNavigation();
 
-const Home=()=>{
-    return(
-        <>
-        <PostsScreen/>
-        <Tabs.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+const Home = () => {
+  const navigation = useNavigation();
 
-          if (route.name === "Posts") {
-            iconName = focused&&"grid";
-          } else if (route.name === "Create") {
-            iconName = focused&&"plus"
-          }
-          else if (route.name === "Profile") {
-            iconName =focused&&"user"
-          }
-          return <Feather name={iconName} size={size} color={color} />;
+  const handleLogOut = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Login" }],
+    });
+  };
+
+  return (
+    <Tabs.Navigator
+      tabBar={(props) => <TabBar {...props} />}
+      initialRouteName="Posts"
+      screenOptions={{
+        headerStyle: {
+          borderBottomWidth: 1,
+          borderBottomColor: "rgba(0, 0, 0, 0.30)",
         },
-      })}
-      tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
       }}
     >
-    
+      <Tabs.Screen
+        name="Posts"
+        component={PostsScreen}
+        options={{
+          headerTitle: "Публікації",
+          headerTitleAlign: "center",
+          headerRight: () => <LogOutButton onLogOut={handleLogOut} />,
+        }}
+      />
+      <Tabs.Screen
+        name="Create"
+        component={CreatePostsScreen}
+        options={{
+          active: true,
+          headerTitle: "Створити публікацію",
+          headerTitleAlign: "center",
+          tabBarStyle: {
+            display: "none",
+          },
+          headerLeft: () => (
+            <Feather
+              name="arrow-left"
+              size={24}
+              color="#212121"
+              onPress={navigation.goBack}
+              style={{ marginLeft: 16 }}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Profile"
+        component={ProfileScreen}
+        onLogout={handleLogOut}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Tabs.Navigator>
-     
-        </>
-    )
+  );
 };
+
 export default Home;

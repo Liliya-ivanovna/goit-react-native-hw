@@ -19,12 +19,7 @@ import {
             <ProfileName>Natali Romanova</ProfileName>
             <ProfileEmail>email@example.com</ProfileEmail>
           </ProfileDetailsWrapper>
-       
-          <Feather name="log-out" size={24} color="#BDBDBD" />
-      
-    
-          </ProfileWrapper>
-      
+      </ProfileWrapper>
       </BackgroundView>
     );
   };

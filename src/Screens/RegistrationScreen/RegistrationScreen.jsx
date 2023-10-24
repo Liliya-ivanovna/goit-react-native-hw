@@ -24,6 +24,7 @@ const RegistrationScreen = ({ navigation }) => {
     email: "",
     password: "",
   });
+  const [isFocused, setIsFocused] = useState(false);
 
   const { login, email, password } = inputsValue;
 
@@ -34,8 +35,7 @@ const RegistrationScreen = ({ navigation }) => {
     } else {
       setErrorLogin(false);
     }
-
-    if (!emailValidator(email)) {
+if (!emailValidator(email)) {
       setErrorEmail(true);
       return;
     } else {
@@ -72,7 +72,7 @@ console.log(inputsValue);
       </AddAvatarButton>
       </AvatarView>
       <Title>Реєстрація</Title>
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}
+      <KeyboardAvoidingView behavior="padding"
       keyboardVerticalOffset={32}>
       <ViewInputs>
         <StyledViewInput>
@@ -85,6 +85,10 @@ console.log(inputsValue);
           value={login}
           textContentType="username"
           keyboardType="default"
+          onBlur={()=>setIsFocused(false)}
+          onFocus={()=>setIsFocused(true)}
+         isFocused={isFocused}
+          
         />
         {errorLogin && <ErrorText>Невірний формат логіну</ErrorText>}
        </StyledViewInput>
@@ -98,6 +102,9 @@ console.log(inputsValue);
           value={email}
           keyboardType="email-address"
           textContentType="emailAddress"
+          onBlur={()=>setIsFocused(false)}
+              onFocus={()=>setIsFocused(true)}
+        isFocused={isFocused}
         />
         {errorEmail && (
                   <ErrorText>Невірний формат електронної пошти</ErrorText>
@@ -114,6 +121,9 @@ console.log(inputsValue);
           onChangeText={(text) => {
             dispatch({ type: "password", payload: text });
           }}
+          onBlur={()=>setIsFocused(false)}
+          onFocus={()=>setIsFocused(true)}
+           isFocused={isFocused}
         />
         <PasswordButton
                     onPress={() => setPasswordVisible(!passwordVisible)}

@@ -1,4 +1,4 @@
-import styled, { css } from '@emotion/native';
+import  styled ,{css} from '@emotion/native';
 
 export const BackgrImage = styled.ImageBackground`
   width: 100%;
@@ -17,21 +17,14 @@ export const RegistrationView = styled.View`
   justify-content: start;
 `;
 export const StyledViewInput = styled.View`
-  width: 100%;
-  height: 50px;
-  padding: 16px;
-  font-size: 16px;
-  border-width: 1px;
-  border-radius: 8px;
-  border-color: #e8e8e8;
-  background-color: #f6f6f6;
-  color:#BDBDBD;
+ width:100%;
 `;
 export const ViewInputs = styled.View`
   gap: 16px;
   align-items: center;
   margin-top: 33px;
   margin-bottom: 43px;
+
 `;
 export const Title = styled.Text`
 padding-top:32px;
@@ -90,7 +83,21 @@ export const SignInWrapper = styled.View`
   align-items: center;
 `;
 export const TextInputStyle=styled.TextInput`
- width:100%;
+ width: 100%;
+  height: 50px;
+  font-size: 16px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #e8e8e8;
+  background-color: #f6f6f6;
+  ${(props)=>props.isFocused&&
+css`
+border-color:#ff6c00;
+background-color:#fff;
+`}
+ &:placeholder{
+  padding-left:16px;
+ }
  `;
 
 export const ErrorText = styled.Text`

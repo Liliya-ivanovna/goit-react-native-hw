@@ -1,4 +1,4 @@
-import styled from '@emotion/native';
+import styled,{css} from '@emotion/native';
 
 export const BackgrImage = styled.ImageBackground`
   width: 100%;
@@ -28,14 +28,7 @@ export const AddAvatarButton = styled.TouchableOpacity`
 `;
 export const StyledViewInput = styled.View`
   width: 100%;
-  height: 50px;
-  padding: 16px;
-  font-size: 16px;
-  border-width: 1px;
-  border-radius: 8px;
-  border-color: #e8e8e8;
-  background-color: #f6f6f6;
-  color:#BDBDBD;
+  
 `;
 export const ViewInputs = styled.View`
   gap: 16px;
@@ -99,6 +92,19 @@ export const SignInWrapper = styled.View`
 `;
  export const InputStyle=styled.TextInput`
  width:100%;
+ height: 50px;
+  padding: 16px;
+  font-size: 16px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #e8e8e8;
+  background-color: #f6f6f6;
+  color:#BDBDBD;
+ ${(props)=>props.isFocused&&
+css`
+border-color:#ff6c00;
+background-color:#fff;
+`}
  `;
 
 export const ErrorText = styled.Text`

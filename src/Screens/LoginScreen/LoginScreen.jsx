@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 import { useInputReducer } from "../../hooks/hookUseReducer";
 import { KeyboardAvoidingView,TouchableWithoutFeedback,
-  Keyboard,View} from "react-native";
+  Keyboard,View,TextInput,  Platform} from "react-native";
 import { emailValidator, passwordValidator } from "../../validators";
 import {
   ErrorText,
@@ -30,6 +30,7 @@ const LoginScreen = ({navigation}) => {
     email: "",
     password: "",
   });
+  const [isFocused, setIsFocused] = useState(false);
 
   const { email, password } = inputsValue;
 
@@ -57,15 +58,17 @@ const LoginScreen = ({navigation}) => {
   };
   console.log(inputsValue);
 
+
   return (
     <BackgrImage source={bgImage}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+     
       <RegistrationView>
         <Title>Увійти</Title>
-        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={32}>
+         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ViewInputs>
-          <StyledViewInput>
+        
             <TextInputStyle
               onChangeText={(text) => {
                 dispatch({ type: "email", payload: text });
@@ -75,12 +78,15 @@ const LoginScreen = ({navigation}) => {
               value={email}
               keyboardType="email-address"
               textContentType="emailAddress"
+           isFocused={isFocused}
+              onBlur={()=>setIsFocused(false)}
+              onFocus={()=>setIsFocused(true)}
+           
             />
             {errorEmail && (
                   <ErrorText>Невірний формат електронної пошти</ErrorText>
                 )}
-          </StyledViewInput>
-          <StyledViewInput>
+        
             <PasswordView>
               <TextInputStyle
                 name="password"
@@ -88,8 +94,11 @@ const LoginScreen = ({navigation}) => {
                 value={password}
                 secureTextEntry={passwordVisible}
                 textContentType="password"
+            isFocused={isFocused}
+                onBlur={()=>setIsFocused(false)}
+                onFocus={()=>setIsFocused(true)}
                 onChangeText={(text) => {
-                  dispatch({ type: "password", payload: text });
+                  dispatch({ type: "email", payload: text });
                 }}
               />
               {errorPassword && (
@@ -100,13 +109,14 @@ const LoginScreen = ({navigation}) => {
                 <PasswordButtonText>Показати</PasswordButtonText>
               </PasswordButton>
             </PasswordView>
-          </StyledViewInput>
         </ViewInputs>
+        </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
         <RegistrationButton onPress={onPressButton}>
           <RegistrationButtonText>Увійти</RegistrationButtonText>
           
         </RegistrationButton>
+        
         <View>
           <SignInWrapper>
             <SignInButtonText>Немає акаунту? </SignInButtonText>
@@ -115,7 +125,7 @@ const LoginScreen = ({navigation}) => {
           </SignInWrapper>
         </View>
       </RegistrationView>
-      </TouchableWithoutFeedback>
+      
     </BackgrImage>
   );
 };

@@ -18,16 +18,9 @@ export const ImageWrapper = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: #F6F6F6
-`;
+  background-color: #F6F6F6;
 
-export const CameraButton = styled.TouchableOpacity`
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background-color: #fff;
+  overflow: hidden;
 `;
 
 export const HelpText = styled.Text`
@@ -43,14 +36,14 @@ export const InputWrapper = styled.View`
   width: 100%;
   margin-top: 32px;
   gap: 16px;
-  `;
+`;
 
 export const Input = styled.TextInput`
   width: 100%;
   height: 50px;
   border-bottom-width: 1px;
   border-bottom-color: #E8E8E8;
-  `;
+`;
 
 export const MapInput = styled.TextInput`
   height: 50px;
@@ -89,4 +82,25 @@ export const DeleteButton = styled.TouchableOpacity`
   align-items: center;
   border-radius: 20px;
   background-color: #f6f6f6;
+`;
+
+export const CameraButton = styled.TouchableOpacity`
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #fff;
+  opacity: 0.5;
+`;
+
+export const CameraView = styled.View`
+  flex: 1;
+  justify-content: center;  
+  background-color: transparent;
+`;
+
+export const PhotoView = styled.Image`
+  width: 100%;
+  height: 100%;
 `;

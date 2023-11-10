@@ -7,7 +7,6 @@ import {
     ProfileEmail,
   } from "./PostsScreen.styled";
   import profileImage from "../../../assets/profile_img.png";
-  import { Feather } from '@expo/vector-icons';
 
   const PostsScreen = () => {
     return (

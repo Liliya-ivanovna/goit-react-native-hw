@@ -28,7 +28,6 @@ import {
   RegistrationView,
   AvatarView,
   AddAvatarButton,
-  StyledViewInput,
   ViewInputs,
 } from "./RegistrationScreen.styled";
 import bgImage from "../../../assets/bg_photo.png";

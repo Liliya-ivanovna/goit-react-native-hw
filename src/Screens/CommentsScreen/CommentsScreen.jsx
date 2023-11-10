@@ -9,7 +9,6 @@ import {
 
 import CommentListItem from "../../components/CommentListItem/ComentListItem";
 import { Feather } from "@expo/vector-icons";
-
 import posts from "../../constants/posts.json";
 
 const CommentsScreen = () => {

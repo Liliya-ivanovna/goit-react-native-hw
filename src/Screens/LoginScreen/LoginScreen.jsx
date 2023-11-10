@@ -21,7 +21,6 @@ import {
   RegistrationButtonText,
   RegistrationButton,
   RegistrationView,
-  StyledViewInput,
   ViewInputs,
 } from "./LoginScreen.styled";
 import bgImage from "../../../assets/bg_photo.png";
